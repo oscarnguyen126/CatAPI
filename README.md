@@ -14,6 +14,12 @@ Install dependencies
 pipenv install
 ```
 
+Fill in .env after populating .env file
+
+```
+cp .env.example .env
+```
+
 Run server
 
 ```
