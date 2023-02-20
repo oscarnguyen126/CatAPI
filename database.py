@@ -3,8 +3,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+from os import environ
 
-SQLALCHEMY_DATABASE_URL = "postgresql://hwng:root@localhost/postgres"
+
+SQLALCHEMY_DATABASE_URL = f"postgresql://{environ.get('DB_USER')}:{environ.get('DB_PWD')}@{environ.get('DB_HOST')}/{environ.get('DB_NAME')}"
+
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
