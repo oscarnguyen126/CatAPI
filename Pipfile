@@ -9,6 +9,10 @@ uvicorn = {extras = ["standard"], version = "*"}
 python-dotenv = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
+psycopg--binary = "*"
+alembic = "*"
+pydantic = "*"
+flask-sqlalchemy = "*"
 
 [dev-packages]
 alembic = "*"

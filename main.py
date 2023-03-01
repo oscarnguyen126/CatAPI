@@ -1,15 +1,22 @@
-from typing import Union
-from os import environ
-from fastapi import FastAPI
-from dotenv import load_dotenv
+from fastapi import Depends, FastAPI, HTTPException
+from sqlalchemy.orm import Session
+
+import crud, models, schemas
+from database import SessionLocal, engine
 
 
-load_dotenv()
-
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "Worlddddd"}
+@app.get("/cats")
+def get_all_cat(db: Session = Depends(get_db)):
+    cats = crud.get_all_cat(db)
+    return cats
