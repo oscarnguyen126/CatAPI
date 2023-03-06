@@ -25,3 +25,4 @@ Run server
 ```
 uvicorn main:app --reload
 ```
+alembic revision — autogenerate -m “First commit”
