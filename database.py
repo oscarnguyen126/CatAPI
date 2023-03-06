@@ -6,8 +6,6 @@ from os import environ
 
 load_dotenv()
 
-load_dotenv()
-
 
 SQLALCHEMY_DATABASE_URL = environ.get('URL_DB_STRING')
 
