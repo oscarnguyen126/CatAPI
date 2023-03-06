@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 class Cat(BaseModel):
-    id: int
+    id: int # TODO: do not enforce submit ID on create
     breed: str
     color: str
     age: int

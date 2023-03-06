@@ -4,7 +4,8 @@ import models, schemas
 
 
 def get_all_cat(db: Session):
-    return db.query(models.Cat)
+    return db.query(models.Cat).offset(0).limit(100).all()
+
 
 def get_cat_by_id(db: Session, id:int):
     return db.query(models.Cat).filter(models.Cat.id == id).first()
@@ -13,14 +14,18 @@ def create_cat(db: Session, cat: schemas.Cat):
     db_cat = models.Cat(breed=cat.breed, color=cat.color, age=cat.age, price=cat.price)
     db.add(db_cat)
     db.commit()
-    db.refresh(db_cat)
     return db_cat
+
+
+def update_cat(db: Session, cat: schemas.Cat):
+    pass
+    # TODO: not implemented
+
 
 def delete_cat(db: Session, id:int):
     db_cat = db.query(models.Cat).filter(models.Cat.id == id).first()
     db.delete(db_cat)
     db.commit()
-    db.refresh(db_cat)
     return f"This cat has been slained"
 
 
