@@ -34,4 +34,3 @@ def delete_cat(db: Session, id: int):
     db.delete(db_cat)
     db.commit()
     return f"This cat has been slained"
-
