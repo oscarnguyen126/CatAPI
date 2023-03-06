@@ -7,6 +7,6 @@ class Cat(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     breed = Column(String, index=True)
-    color = Column(String)
-    age = Column(Integer)
-    price = Column(Integer)
+    age = Column(String)
+    size = Column(String)
+    gender = Column(String)
