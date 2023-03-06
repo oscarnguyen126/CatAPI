@@ -6,3 +6,6 @@ migrate:
 
 seed:
 	python seed.py
+
+run:
+	uvicorn main:app --reload

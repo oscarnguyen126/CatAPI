@@ -22,13 +22,13 @@ def read_root():
     return {"Hello": "Worlddddd"}
 
 
-@app.get("/cats", response_model=list[schemas.Cat])
+@app.get("/cats", response_model=list[schemas.CatView])
 def read_cats(db: Session = Depends(get_db)):
     cats = crud.get_all_cat(db)
     return cats
 
 
-@app.get("/cats/{id}", response_model=schemas.Cat)
+@app.get("/cats/{id}", response_model=schemas.CatView)
 def read_cat(id: int, db: Session = Depends(get_db)):
     db_cat = crud.get_cat_by_id(db, id=id)
     if db_cat is None:
@@ -36,13 +36,13 @@ def read_cat(id: int, db: Session = Depends(get_db)):
     return db_cat
 
 
-@app.post("/cats", response_model=schemas.Cat)
-def create_cat(cat: schemas.Cat, db: Session = Depends(get_db)):
+@app.post("/cats", response_model=schemas.CatEdit)
+def create_cat(cat: schemas.CatEdit, db: Session = Depends(get_db)):
     return crud.create_cat(db=db, cat=cat)
 
 
-@app.put("/cats/{id}", response_model=schemas.Cat)
-def update_cat(id: int, cat: schemas.Cat, db: Session = Depends(get_db)):
+@app.put("/cats/{id}", response_model=schemas.CatView)
+def update_cat(id: int, cat: schemas.CatEdit, db: Session = Depends(get_db)):
     db_cat = crud.get_cat_by_id(db, id=id)
     if db_cat is None:
         raise HTTPException(status_code=404, detail="Cat not found")

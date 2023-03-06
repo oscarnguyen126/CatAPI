@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 
-class Cat(BaseModel):
+class CatEdit(BaseModel):
     breed: str
     size: str
     gender: str
@@ -9,3 +9,7 @@ class Cat(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class CatView(CatEdit):
+    id: str
