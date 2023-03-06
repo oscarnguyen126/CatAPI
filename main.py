@@ -8,12 +8,14 @@ from sqlalchemy.orm import Session
 
 import crud, models, schemas
 from database import get_db, engine
+
 load_dotenv()
 
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
 
 @app.get("/")
 def read_root():
@@ -27,7 +29,7 @@ def read_cats(db: Session = Depends(get_db)):
 
 
 @app.get("/cats/{id}", response_model=schemas.Cat)
-def read_cat(id:int, db: Session = Depends(get_db)):
+def read_cat(id: int, db: Session = Depends(get_db)):
     db_cat = crud.get_cat_by_id(db, id=id)
     if db_cat is None:
         raise HTTPException(status_code=404, detail="Cat not found")
@@ -35,20 +37,20 @@ def read_cat(id:int, db: Session = Depends(get_db)):
 
 
 @app.post("/cats", response_model=schemas.Cat)
-def create_cat(cat: schemas.Cat, db: Session= Depends(get_db)):
+def create_cat(cat: schemas.Cat, db: Session = Depends(get_db)):
     return crud.create_cat(db=db, cat=cat)
 
 
 @app.put("/cats/{id}", response_model=schemas.Cat)
-def update_cat(id:int, cat: schemas.Cat, db: Session= Depends(get_db)):
+def update_cat(id: int, cat: schemas.Cat, db: Session = Depends(get_db)):
     db_cat = crud.get_cat_by_id(db, id=id)
     if db_cat is None:
         raise HTTPException(status_code=404, detail="Cat not found")
-    return crud.update_cat(db=db,  id=id, cat=cat)
+    return crud.update_cat(db=db, id=id, cat=cat)
 
 
 @app.delete("/cats/{id}")
-def delete_cat(id:int, db: Session = Depends(get_db)):
+def delete_cat(id: int, db: Session = Depends(get_db)):
     db_cat = crud.get_cat_by_id(db, id=id)
     if db_cat is None:
         raise HTTPException(status_code=404, detail="Cat not found")

@@ -10,12 +10,12 @@ python-dotenv = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
 psycopg--binary = "*"
-alembic = "*"
 pydantic = "*"
 flask-sqlalchemy = "*"
 
 [dev-packages]
 alembic = "*"
+black = "*"
 
 [requires]
 python_version = "3.10"
