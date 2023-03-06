@@ -25,12 +25,11 @@ Run server
 ```
 uvicorn main:app --reload
 ```
-alembic revision — autogenerate -m “First commit”
 
 
 Apply changes from models to database:
 
-```
+``` 
 alembic revision --autogenerate -m <your commit message>
 
 alembic upgrade head
