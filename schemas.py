@@ -13,3 +13,13 @@ class CatEdit(BaseModel):
 
 class CatView(CatEdit):
     id: str
+
+
+class CatListView(BaseModel):
+    total: int
+    items: list[CatView]
+    page: int
+    pages: int
+
+    class Config:
+        orm_mode = True

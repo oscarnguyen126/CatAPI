@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 psycopg--binary = "*"
 pydantic = "*"
 flask-sqlalchemy = "*"
+fastapi-pagination = "*"
 
 [dev-packages]
 alembic = "*"

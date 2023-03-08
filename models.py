@@ -11,3 +11,12 @@ class Cat(Base):
     age = Column(String)
     size = Column(String)
     gender = Column(String)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "breed": self.breed,
+            "age": self.age,
+            "size": self.size,
+            "gender": self.gender,
+        }

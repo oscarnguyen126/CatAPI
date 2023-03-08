@@ -1,11 +1,13 @@
-from typing import Union
 from os import environ
 from fastapi import FastAPI
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlalchemy.orm import Session
+from models import Cat
+from math import ceil
 
 
+from fastapi_pagination import Page, add_pagination, paginate
 import crud, models, schemas
 from database import get_db, engine
 
@@ -22,10 +24,21 @@ def read_root():
     return {"Hello": "Worlddddd"}
 
 
-@app.get("/cats", response_model=list[schemas.CatView])
-def read_cats(db: Session = Depends(get_db)):
-    cats = crud.get_all_cat(db)
-    return cats
+@app.get("/cats", response_model=schemas.CatListView)
+def read_cats(db: Session = Depends(get_db), breed=None, offset=None, limit=None):
+    query = db.query(Cat).filter_by(breed=breed) if breed else db.query(Cat)
+    cat_count = query.count()
+    cats = query.offset(offset or 0).limit(limit or cat_count).all()
+
+    page = ceil(int(offset) / int(limit)) if limit else 1
+    pages = ceil(cat_count / int(limit)) if limit else 1
+
+    return {
+        "items": [c.to_dict() for c in cats],
+        "total": len(cats),
+        "page": page,
+        "pages": pages,
+    }
 
 
 @app.get("/cats/{id}", response_model=schemas.CatView)
@@ -55,3 +68,6 @@ def delete_cat(id: int, db: Session = Depends(get_db)):
     if db_cat is None:
         raise HTTPException(status_code=404, detail="Cat not found")
     return crud.delete_cat(db=db, id=id)
+
+
+add_pagination(app)
