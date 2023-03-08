@@ -1,13 +1,9 @@
-from os import environ
 from fastapi import FastAPI
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from models import Cat
 from math import ceil
-
-
-from fastapi_pagination import Page, add_pagination, paginate
 import crud, models, schemas
 from database import get_db, engine
 
@@ -68,6 +64,3 @@ def delete_cat(id: int, db: Session = Depends(get_db)):
     if db_cat is None:
         raise HTTPException(status_code=404, detail="Cat not found")
     return crud.delete_cat(db=db, id=id)
-
-
-add_pagination(app)
