@@ -1,9 +1,9 @@
-from database import standalone_session
+from libs.database import standalone_session
 import csv
-from models import Cat
+from routers.cats.models import Cat
 
 
-with open("cats.csv") as file:
+with open("./seed_data/cats.csv") as file:
     reader_obj = csv.reader(file, delimiter=",")
 
     with standalone_session as session:

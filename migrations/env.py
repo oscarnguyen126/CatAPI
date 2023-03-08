@@ -5,8 +5,9 @@ from sqlalchemy import pool
 from os import environ
 from alembic import context
 from dotenv import load_dotenv
-import models
-from database import Base
+import routers.cats.models
+import routers.dogs.models
+from libs.database import Base
 
 
 load_dotenv()

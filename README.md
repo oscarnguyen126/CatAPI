@@ -53,6 +53,7 @@ alembic upgrade head
         /migrations
         alembic.ini
         database.py
+        seed.py
     .env
     .env.example
     .gitignore
