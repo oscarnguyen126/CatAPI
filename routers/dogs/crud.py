@@ -8,10 +8,6 @@ def get_dog_by_id(db: Session, id: int):
 
 
 def create_dog(db: Session, dog: DogEdit):
-    import pdb
-
-    pdb.set_trace()
-
     db_dog = Dog(
         breed=dog.breed,
         origin=dog.origin,
