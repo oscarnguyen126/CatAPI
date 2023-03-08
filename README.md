@@ -36,30 +36,13 @@ alembic upgrade head
 ```
 
 
-### new project structure
+### TODO
 
 ```
-/catapi
-    /routers
-        /cats
-            models.py
-            crud.py
-            api.py
-        /dogs
-            models.py
-            crud.py
-            api.py
-    /libs
-        /migrations
-        alembic.ini
-        database.py
-        seed.py
-    .env
-    .env.example
-    .gitignore
-    Makefile
-    README.md
-    Pipfile
-    Pipfile.lock
-    main.py
+1. Refactor dogs api:
+    - remove crud.py
+    - replace crud operations by libs/crud
+    - inherit ListView
+
+2. 
 ```

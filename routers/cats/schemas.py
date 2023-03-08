@@ -1,4 +1,4 @@
-from libs.schema import BaseSchema
+from libs.schema import BaseSchema, ListView
 
 
 class CatEdit(BaseSchema):
@@ -12,8 +12,5 @@ class CatView(CatEdit):
     id: str
 
 
-class CatListView(BaseSchema):
-    total: int
+class CatListView(ListView):
     items: list[CatView]
-    page: int
-    pages: int
