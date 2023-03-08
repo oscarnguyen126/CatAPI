@@ -3,10 +3,6 @@ from .models import Cat
 from .schemas import CatEdit
 
 
-def get_all_cat(db: Session):
-    return db.query(Cat).offset(0).limit(100).all()
-
-
 def get_cat_by_id(db: Session, id: int):
     return db.query(Cat).filter(Cat.id == id).first()
 

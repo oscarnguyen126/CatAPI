@@ -1,25 +1,19 @@
-from pydantic import BaseModel
+from libs.schema import BaseSchema
 
 
-class CatEdit(BaseModel):
+class CatEdit(BaseSchema):
     breed: str
     size: str
     gender: str
     age: str
-
-    class Config:
-        orm_mode = True
 
 
 class CatView(CatEdit):
     id: str
 
 
-class CatListView(BaseModel):
+class CatListView(BaseSchema):
     total: int
     items: list[CatView]
     page: int
     pages: int
-
-    class Config:
-        orm_mode = True
