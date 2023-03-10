@@ -21,13 +21,13 @@ def read_cat(id: int, db=Depends(get_db)):
 
 
 @cat_router.post("/", response_model=CatEdit)
-def create_new_cat(cat: CatEdit, db=Depends(get_db)):
-    return CRUD(model=Cat, db=db).create(cat)
+def create_new_cat(payload: CatEdit, db=Depends(get_db)):
+    return CRUD(model=Cat, db=db).create(payload)
 
 
 @cat_router.put("/{id}", response_model=CatView)
-def update_existing_cat(id: int, cat: CatEdit, db=Depends(get_db)):
-    return CRUD(model=Cat, db=db).update(id, cat)
+def update_existing_cat(id: int, payload: CatEdit, db=Depends(get_db)):
+    return CRUD(model=Cat, db=db).update(id, payload)
 
 
 @cat_router.delete("/{id}")

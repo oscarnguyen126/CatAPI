@@ -13,6 +13,7 @@ psycopg--binary = "*"
 pydantic = "*"
 flask-sqlalchemy = "*"
 fastapi-pagination = "*"
+bcrypt = "*"
 
 [dev-packages]
 alembic = "*"

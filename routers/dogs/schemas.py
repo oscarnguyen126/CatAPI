@@ -1,4 +1,4 @@
-from libs.schema import BaseSchema
+from libs.schema import BaseSchema, ListView
 
 
 class DogEdit(BaseSchema):
@@ -16,8 +16,5 @@ class DogView(DogEdit):
     id: int
 
 
-class DogListView(BaseSchema):
-    total: int
+class DogListView(ListView):
     items: list[DogView]
-    page: int
-    pages: int

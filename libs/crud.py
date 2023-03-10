@@ -31,13 +31,22 @@ class CRUD:
         }
 
     def get_by_id(self, id):
-        persisted_obj = self.query.filter(self.model.id == id).first()
-        if not persisted_obj:
+        res = self.query.filter(self.model.id == id).first()
+        if not res:
             raise HTTPException(
                 status_code=404,
                 detail=f"{self.model.__tablename__} with id {id} is not exist",
             )
-        return persisted_obj
+        return res
+
+    def find(self, conditions):
+        res = self.query.filter_by(**conditions).first()
+        # if not res:
+        #     raise HTTPException(
+        #         status_code=404,
+        #         detail=f"{self.model.__tablename__} with id {id} is not exist",
+        #     )
+        return res
 
     def create(self, obj):
         persisted_obj = self.model(**obj.dict())

@@ -7,6 +7,7 @@ from alembic import context
 from dotenv import load_dotenv
 import routers.cats.models
 import routers.dogs.models
+import routers.users.models
 from libs.database import Base
 
 
